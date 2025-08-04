@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="keywords" content="Portfolio">
   <meta name="author" content="Ronie Jan V. Babanto">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet icon" type="x-icon" href="assets/img-9.png">
   <link rel="stylesheet" href="style.css">
@@ -42,7 +42,7 @@
           asset for remote teams.
         </p>
         <div class="header-btn">
-          <button class="btn">Send a DM</button>
+          <button class="btn" onclick="window.location.href='mailto:roniejanbabanto663@gmail.com'">Send a DM</button>
         </div>
       </div>
     </header>
@@ -64,7 +64,7 @@
           and handling last-minute changes, I'm here to ensure no detail slips through the cracks.
         </p>
         <div class="about-btn">
-          <button class="btn">Download Resume</button>
+          <button class="btn" onclick="downloadResume()">Download Resume</button>
         </div>
       </div>
     </section>
@@ -167,6 +167,21 @@
       Portfolio | Ronie Jan V. Babanto
     </footer>
 
+    <script>
+      function downloadResume() {
+        fetch('MyResume.pdf')
+          .then(response => response.blob())
+          .then(blob => {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'MyResume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+          });
+      }
+    </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="main.js"></script>
   </body>
